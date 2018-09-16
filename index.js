@@ -22,7 +22,7 @@ client.on('connect', () => {
 client.on('message', (topic, message) => {
   sensor.read(DHT_TYPE, GPIO_PIN, (err, temperature, humidity) => {
     if (!err) {
-      switch() {
+      switch(topic) {
         case `${MESSAGES.TEMPERATURE}/get`:
           client.publish(MESSAGES.TEMPERATURE, temperature);
           break;
