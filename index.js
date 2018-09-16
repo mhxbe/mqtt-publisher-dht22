@@ -14,9 +14,9 @@ const client = mqtt.connect('mqtt://192.168.0.135', {
 });
 
 client.on('connect', () => {
-  client.subscribe(`{MESSAGES.TEMPERATURE}/get`);
-  client.subscribe(`{MESSAGES.HUMIDITY}/get`);
-  client.subscribe(`{MESSAGES.ALL}/get`);
+  client.subscribe(`${MESSAGES.TEMPERATURE}/get`);
+  client.subscribe(`${MESSAGES.HUMIDITY}/get`);
+  client.subscribe(`${MESSAGES.ALL}/get`);
 });
 
 client.on('message', (topic, message) => {
@@ -32,7 +32,7 @@ client.on('message', (topic, message) => {
           break;
 
         case `${MESSAGES.ALL}/get`:
-          client.publish(MESSAGES.all, { temperature, humidity });
+          client.publish(MESSAGES.ALL, JSON.stringify({temperature, humidity}));
           break;
       }
     }
