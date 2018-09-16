@@ -24,15 +24,15 @@ client.on('message', (topic, message) => {
     if (!err) {
       switch(topic) {
         case `${MESSAGES.TEMPERATURE}/get`:
-          client.publish(MESSAGES.TEMPERATURE, temperature);
+          client.publish(MESSAGES.TEMPERATURE, temperature, { retain: true });
           break;
 
         case `${MESSAGES.TEMPERATURE}/get`:
-          client.publish(MESSAGES.HUMIDITY, humidity);
+          client.publish(MESSAGES.HUMIDITY, humidity, { retain: true });
           break;
 
         case `${MESSAGES.ALL}/get`:
-          client.publish(MESSAGES.ALL, JSON.stringify({temperature, humidity}));
+          client.publish(MESSAGES.ALL, JSON.stringify({temperature, humidity}), { retain: true });
           break;
       }
     }
