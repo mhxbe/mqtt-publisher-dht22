@@ -6,10 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["mqtt", "dht22", "temperature", "humidity", "raspberrypi"],
+  "keywords": [
+    "mqtt",
+    "dht22",
+    "temperature",
+    "humidity",
+    "raspberrypi"
+  ],
   "author": "Mike Henderyckx",
   "license": "ISC",
   "dependencies": {
+    "mqtt": "^2.18.8",
     "node-dht-sensor": "0.0.34"
   }
 }
