@@ -6,7 +6,7 @@ const GPIO_PIN = 4;
 const MESSAGES = {
   TEMPERATURE: 'jidoka/office/temperature',
   HUMIDITY: 'jidoka/office/humidity',
-  ALL: 'jidoka/office/all',
+  ALL: 'jidoka/office/temperature-humidity',
 };
 const client = mqtt.connect('mqtt://192.168.0.135', {
   port: 1883,
@@ -24,18 +24,21 @@ client.on('message', (topic, message) => {
     if (!err) {
       switch(topic) {
         case `${MESSAGES.TEMPERATURE}/get`:
+          console.log(`${MESSAGES.TEMPERATURE}/get`);
           client.publish(MESSAGES.TEMPERATURE, temperature, { retain: true });
           break;
 
-        case `${MESSAGES.TEMPERATURE}/get`:
+        case `${MESSAGES.HUMIDITY}/get`:
+          console.log(`${MESSAGES.HUMIDITY}/get`);
           client.publish(MESSAGES.HUMIDITY, humidity, { retain: true });
           break;
 
         case `${MESSAGES.ALL}/get`:
+	  console.log(`${MESSAGES.ALL}/get`);
           client.publish(MESSAGES.ALL, JSON.stringify({temperature, humidity}), { retain: true });
           break;
       }
-    }
+    } else { console.log('Oops...', err); }
   });
 });
 
