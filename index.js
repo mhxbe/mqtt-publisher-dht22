@@ -4,9 +4,9 @@ const sensor = require('node-dht-sensor');
 const DHT_TYPE = 22;
 const GPIO_PIN = 4;
 const MESSAGES = {
-  TEMPERATURE: 'office/temperature',
-  HUMIDITY: 'office/humidity',
-  ALL: 'office/all',
+  TEMPERATURE: 'jidoka/office/temperature',
+  HUMIDITY: 'jidoka/office/humidity',
+  ALL: 'jidoka/office/all',
 };
 const client = mqtt.connect('mqtt://192.168.0.135', {
   port: 1883,
